@@ -1,6 +1,6 @@
 from piece import Piece
 
-test_piece = Piece(2, False, [2,7]) 
+test_piece = Piece(2, False, [2,5]) 
 test_piece2 = Piece(1, False, [5,2])
 x ="x"
 o = "o"
@@ -18,7 +18,7 @@ board1 = [
 boardt = [
     [x,2,x,2,x,2,x,2],
     [2,x,2,x,2,x,2,x],
-    [x,2,x,2,x,2,x,2],
+    [x,2,x,2,x,1,x,2],
     [o,x,o,x,1,x,1,x],
     [x,o,x,o,x,o,x,o],
     [1,x,1,x,1,x,1,x],
@@ -26,8 +26,8 @@ boardt = [
     [1,x,1,x,1,x,1,x],
 
 ]
-spot1 = [2,7]
-result1 = [3,6]
+spot1 = [2,5]
+result1 = [[4,7], [4,3], [6,1]]
 
 spot2 = [5,2]
 result2 = [[4,1], [4,3]]
