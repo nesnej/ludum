@@ -1,6 +1,6 @@
 from piece import Piece
 
-test_piece = Piece(2, False, [2,5]) 
+test_piece = Piece(2, False, [2,3]) 
 test_piece2 = Piece(1, False, [5,2])
 x ="x"
 o = "o"
@@ -17,33 +17,39 @@ board1 = [
 ]
 boardt = [
     [x,2,x,2,x,2,x,2],
-    [2,x,2,x,2,x,2,x],
-    [x,2,x,2,x,1,x,2],
-    [o,x,o,x,1,x,1,x],
-    [x,o,x,o,x,o,x,o],
+    [2,x,2,x,2,x,o,x],
+    [x,2,x,2,x,2,x,2],
+    [o,x,o,x,o,x,1,x],
+    [x,o,x,2,x,o,x,o],
     [1,x,1,x,1,x,1,x],
-    [x,o,x,1,x,1,x,1],
+    [x,o,x,1,x,1,x,o],
     [1,x,1,x,1,x,1,x],
 
 ]
-spot1 = [2,5]
-result1 = [[4,7], [4,3], [6,1]]
+spot1 = [2,3]
+result1 = [[3,2], [4,5], [6,7]]
 
 spot2 = [5,2]
-result2 = [[4,1], [4,3]]
+result2 = [[4,1], [3,4], [1,6]]
 
 
 def valid_moves2(my_board, my_piece):
+    if my_piece.team != 2:
+        return "Wrong piece for function"
     answer = []
+    move_l = []
+    move_r = []
+    path_l = []
+    path_r = []
     first = my_piece.position[0] + 1
     second_r = my_piece.position[1] + 1
     second_l = my_piece.position[1] - 1
 
     if first < 8 and second_r < 8 and second_l >= 0:
         if my_board[first][second_l] == o:
-            answer.append([first, second_l])
+            move_l.append([first, second_l])
         if my_board[first][second_r] == o:
-            answer.append([first, second_r])
+            move_r.append([first, second_r])
    
     jd = 0
     jl = 0
@@ -59,7 +65,7 @@ def valid_moves2(my_board, my_piece):
         else:
             break
         if my_board[first][second_l] == 1 and my_board[jumpd][jumpl] == o:
-            answer.append([jumpd, jumpl])
+            path_l.append([jumpd, jumpl])
         else:
             break
     
@@ -74,22 +80,37 @@ def valid_moves2(my_board, my_piece):
         else:
             break
         if my_board[first][second_r] == 1 and my_board[jumpd][jumpr] == o:
-            answer.append([jumpd, jumpr])
+            path_r.append([jumpd, jumpr])
         else:
             break
+    if len(move_l) > 0:  
+        answer.append(move_l)
+    if len(move_r) > 0: 
+        answer.append(move_r)
+    if len(path_l) > 0:
+        answer.append(path_l)
+    if len(path_r) > 0:
+        answer.append(path_r)
+
     print(answer)
 
 def valid_moves1(my_board, my_piece):
+    if my_piece.team != 1:
+        return "Wrong piece for function"
     answer = []
+    move_l = []
+    move_r = []
+    path_l = []
+    path_r = []
     first = my_piece.position[0] - 1
     second_r = my_piece.position[1] + 1
     second_l = my_piece.position[1] - 1
 
     if first >= 0 and second_r < 8 and second_l >= 0:
         if my_board[first][second_l] == o:
-            answer.append([first, second_l])
+            move_l.append([first, second_l])
         if my_board[first][second_r] == o:
-            answer.append([first, second_r])
+            move_r.append([first, second_r])
 
     
     j = 0
@@ -104,8 +125,8 @@ def valid_moves1(my_board, my_piece):
             jumpl = my_piece.position[1] + j
         else:
             break
-        if my_board[first][second_l] == 1 and my_board[jumpu][jumpl] == o:
-            answer.append([jumpu, jumpl])
+        if my_board[first][second_l] == 2 and my_board[jumpu][jumpl] == o:
+            path_l.append([jumpu, jumpl])
         else:
             break
     
@@ -121,14 +142,24 @@ def valid_moves1(my_board, my_piece):
             jumpr = my_piece.position[1] + jr
         else:
             break
-        if my_board[first][second_r] == 1 and my_board[jumpu][jumpr] == o:
-            answer.append([jumpu, jumpr])
+        if my_board[first][second_r] == 2 and my_board[jumpu][jumpr] == o:
+            path_r.append([jumpu, jumpr])
         else:
             break
+
+    if len(move_l) > 0:  
+        answer.append(move_l)
+    if len(move_r) > 0: 
+        answer.append(move_r)
+    if len(path_l) > 0:
+        answer.append(path_l)
+    if len(path_r) > 0:
+        answer.append(path_r)
     print(answer)
 
 
-valid_moves2(boardt, test_piece)
+
+#valid_moves2(boardt, test_piece)
 valid_moves1(boardt, test_piece2)
 
 
