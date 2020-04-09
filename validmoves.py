@@ -35,7 +35,7 @@ result2 = [[4,1], [3,4], [1,6]]
 
 def valid_moves2(my_board, my_piece):
     if my_piece.team != 2:
-        return "Wrong piece for function"
+        return
     answer = []
     move_l = []
     move_r = []
@@ -96,7 +96,7 @@ def valid_moves2(my_board, my_piece):
 
 def valid_moves1(my_board, my_piece):
     if my_piece.team != 1:
-        return "Wrong piece for function"
+        return
     answer = []
     move_l = []
     move_r = []
