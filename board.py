@@ -12,38 +12,40 @@ blackRow = {}
 # Created Squares and added them to dictionary
 squares = range(0,32,2)
 for x in squares:
-    redRow[x] = Button(root, bg="red", padx=40, pady=35)
+    redRow[x] = Button(root, state=DISABLED, bg="red", padx=40, pady=35)
     redRow[x+1] = Button(root, bg="black", padx=40, pady=35)
 
 for x in squares:
     blackRow[x] = Button(root, bg="black", padx=40, pady=35)
-    blackRow[x+1] = Button(root, bg="red", padx=40, pady=35)
+    blackRow[x+1] = Button(root, state=DISABLED, bg="red", padx=40, pady=35)
+
+
 
 
 #creatinig the white pieces
-white_pieces = {}
+black_pieces = {}
 my_w_imgs = {}
 for x in range(12):
     my_w_imgs[x] = ImageTk.PhotoImage(Image.open("nesnej/ludum/output2-onlinepngtools.png"))
 for x in range(12):
-    white_pieces[x] = Button(root, image=my_w_imgs[x])
-print(white_pieces)
+    black_pieces[x] = Button(root, image=my_w_imgs[x])
+#print(black_pieces)
 
 #creating the black pieces
 
-black_pieces = {}
+white_p1 = {}
 my_b_imgs ={}
 for x in range(12):
     my_b_imgs[x] = ImageTk.PhotoImage(Image.open("nesnej/ludum/output-onlinepngtools.png"))
 for x in range(12):
-    black_pieces[x] = Button(root, image=my_b_imgs[x])
-print(black_pieces)
+    white_p1[x] = Button(root, image=my_b_imgs[x])
+#print(white_p1)
 
 
-#Placing the white pieces onto the board
+#Placing the black pieces onto the board
 row_c = 0 
 column_c = 1
-for key, value in white_pieces.items():
+for key, value in black_pieces.items():
     value.grid(row=row_c, column=column_c)
     if column_c == 7:
         row_c += 1
@@ -54,10 +56,10 @@ for key, value in white_pieces.items():
     else:
         column_c += 2
 
-#Placing the Black pieces onto the board
+#Placing the white pieces onto the board
 bot_row = 5
 bot_column = 0
-for key, value in black_pieces.items():
+for key, value in white_p1.items():
     value.grid(row=bot_row, column=bot_column)
     if bot_column == 6:
         bot_row += 1
@@ -83,8 +85,36 @@ for j in range(0,7,2):
 
 
 #To move location of piece simply use this line below but change the x to the piece you want to move, y the row where you want it, and z the column where you want it
-#white_pieces[x].grid(row=y, column=z)
+black_pieces[1].grid(row=3, column=2)
 
 
+board = []
+rows = []
+
+for x in range(4):
+    rows = []
+    for x in range(7):
+        rows.append(redRow[x])
+    board.append(rows)
+    rows = []
+    for x in range(7):
+        rows.append(blackRow[x])
+    board.append(rows)
+
+
+
+"""
+game_board = [
+    [x,2,x,2,x,2,x,2],
+    [2,x,2,x,2,x,o,x],
+    [x,2,x,2,x,2,x,2],
+    [o,x,o,x,o,x,1,x],
+    [x,o,x,2,x,o,x,o],
+    [1,x,1,x,1,x,1,x],
+    [x,o,x,1,x,1,x,o],
+    [1,x,1,x,1,x,1,x],
+
+]
+"""
 
 mainloop()
