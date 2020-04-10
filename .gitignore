@@ -1,2 +1,4 @@
 .env
 codespace.code-workspace
+
+__pycache__/
