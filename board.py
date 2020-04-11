@@ -39,8 +39,9 @@ gbutton = Button(root)
 
 
 def runMove(square):
-
+    global game_board
     global gvalid_moves
+    print(game_board)
     print("VALID MOVES", gvalid_moves)
 
     row = square.grid_info()["row"]
@@ -62,13 +63,14 @@ def runMove(square):
     i = 0
     for manip in game_board_manipulations:
         if i == 0:
-            game_board[manip[0]][[manip[1]]] = piece_wanting_to_move.team
+            game_board[manip[0]][manip[1]] = piece_wanting_to_move.team
         else:
-            game_board[manip[0]][[manip[1]]] = o
+            game_board[manip[0]][manip[1]] = o
         i += 1
 
 
 def save_global_piece(valid_moves):
+    global game_board
     global gvalid_moves
     gvalid_moves = valid_moves
     print(gvalid_moves)
@@ -77,6 +79,7 @@ def save_global_piece(valid_moves):
 
 def getLocation(button):
     global gbutton
+    global game_board
     gbutton = button
     row = button.grid_info()["row"]
     print(row)
@@ -121,14 +124,15 @@ for x in range(12):
 
 
 # Placing the black pieces onto the board
+
 row_c = 0
 column_c = 1
 black_piece_location = []
 for key, value in black_pieces.items():
     black_piece_location.append([row_c, column_c])
     value.grid(row=row_c, column=column_c)
-
     def remember(piece):
+        global game_board
         value.config(command=lambda: save_global_piece(valid_moves2(
             game_board, getLocation(piece))))
     remember(value)
