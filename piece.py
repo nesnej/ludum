@@ -31,8 +31,8 @@ sample_board_3 = [
     [x, 1, x, o, x, 1, x, 1],  # 6
     [1, x, 1, x, 1, x, 1, x],  # 7s
 ]
-piece_4_valid_moves = [[[3, 2], [5, 0]]]
-piece_4_move_to = [[3, 2], [5, 0]]
+piece_4_valid_moves = [[[3, 4]], [[3, 6]]]
+piece_4_move_to = [[3, 6]]
 
 
 sample_valid_moves = [[[3, 2]], [[3, 4]]]
@@ -42,9 +42,9 @@ sample_move_to_2 = [[3, 3]]
 sample_valid_moves_2 = [[[3, 4]], [[4, 1], [6, 3]]]
 sample_good_move_1 = [[4, 1], [6, 3]]
 
-sample_valid_moves_3 = [[[4, 1]]]
+sample_valid_moves_3 = [[[3, 4], [3, 6]]]
 sample_bad_move_1 = [[1, 1]]
-sample_good_move_4 = [[4, 1]]
+sample_good_move_4 = [[3, 6]]
 
 
 class Piece:
@@ -140,26 +140,26 @@ def is_move_path_valid(valid_move_paths, move_path):
                 break
         if is_valid_move == True:
             break
-        return is_valid_move
+    return is_valid_move
 
 
-sample_piece = Piece(2, False, [2, 3])
-try:
-    sample_piece.move(sample_board_1, sample_valid_moves, sample_move_to_1)
-except ValueError:
-    print("This move is not valid yo.")
-sample_piece3 = Piece(1, False, [5, 0])
-try:
-    sample_piece3.move(sample_board_2, sample_valid_moves_3,
-                       sample_bad_move_1)
-except ValueError:
-    print("This move is not valid yo.")
-try:
-    sample_piece3.move(sample_board_2, sample_valid_moves_3,
-                       sample_good_move_4)
-except ValueError:
-    print("This move is not valid yo.")
-sample_piece_4 = Piece(2, False, [1, 4])
+# sample_piece = Piece(2, False, [2, 3])
+# try:
+#     sample_piece.move(sample_board_1, sample_valid_moves, sample_move_to_1)
+# except ValueError:
+#     print("This move is not valid yo.")
+# sample_piece3 = Piece(1, False, [5, 0])
+# try:
+#     sample_piece3.move(sample_board_2, sample_valid_moves_3,
+#                        sample_bad_move_1)
+# except ValueError:
+#     print("This move is not valid yo.")
+# try:
+#     sample_piece3.move(sample_board_2, sample_valid_moves_3,
+#                        sample_good_move_4)
+# except ValueError:
+#     print("This move is not valid yo.")
+sample_piece_4 = Piece(2, False, [2, 5])
 try:
     sample_piece_4.move(sample_board_3, piece_4_valid_moves, piece_4_move_to)
 except ValueError:
