@@ -113,6 +113,7 @@ class Piece:
                 # Remove the piece
                 game_board_manipulations.append(piece_to_remove)
         print(game_board_manipulations)
+        return game_board_manipulations
 
 
 def is_move_path_valid(valid_move_paths, move_path):
