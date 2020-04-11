@@ -102,7 +102,7 @@ black_pieces = {}
 my_w_imgs = {}
 for x in range(12):
     my_w_imgs[x] = ImageTk.PhotoImage(Image.open(
-        "output2-onlinepngtools.png"))
+        "nesnej/ludum/output2-onlinepngtools.png"))
 for x in range(12):
     black_pieces[x] = Button(
         root, bg='pink', image=my_w_imgs[x])
@@ -114,7 +114,7 @@ white_p1 = {}
 my_b_imgs = {}
 for x in range(12):
     my_b_imgs[x] = ImageTk.PhotoImage(Image.open(
-        "output-onlinepngtools.png"))
+        "nesnej/ludum/output-onlinepngtools.png"))
 for x in range(12):
     white_p1[x] = Button(root, bg='purple', image=my_b_imgs[x])
 # print(white_p1)

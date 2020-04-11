@@ -20,7 +20,7 @@ boardt = [
     [2, x, 2, x, 2, x, o, x],
     [x, 2, x, 2, x, 2, x, 2],
     [o, x, o, x, o, x, o, x],
-    [x, o, x, 2, x, o, x, o],
+    [x, o, x, o, x, o, x, o],
     [1, x, 1, x, 1, x, 1, x],
     [x, o, x, 1, x, 1, x, o],
     [1, x, 1, x, 1, x, 1, x],
@@ -46,7 +46,10 @@ def valid_moves2(my_board, my_piece):
     second_r = my_piece.position[1] + 1
     second_l = my_piece.position[1] - 1
 
-    if first < 8 and second_r < 8 and second_l >= 0:
+    if first < 8 and second_r == 8:
+        move_l.append([first, second_l])
+    elif first < 8 and second_r < 8 and second_l >= 0:
+        
         if my_board[first][second_l] == o:
             move_l.append([first, second_l])
         if my_board[first][second_r] == o:
