@@ -1,7 +1,7 @@
 from tkinter import *
 from PIL import ImageTk, Image
 from piece import Piece
-from validmoves import valid_moves2
+from validmoves import valid_moves2, valid_moves1
 # from tkinter.ttk import *
 
 
@@ -13,7 +13,7 @@ game_board = [
     [x, 2, x, 2, x, 2, x, 2],
     [2, x, 2, x, 2, x, 2, x],
     [x, 2, x, 2, x, 2, x, 2],
-    [o, x, o, x, o, x, o, x],
+    [o, x, 1, x, o, x, o, x],
     [x, o, x, o, x, o, x, o],
     [1, x, 1, x, 1, x, 1, x],
     [x, 1, x, 1, x, 1, x, 1],
@@ -59,6 +59,12 @@ def runMove(square):
 
     gbutton.grid(
         row=game_board_manipulations[0][0], column=game_board_manipulations[0][1])
+    color = gbutton.cget("bg")
+    team = 0
+    if color == "pink":
+        team = 2
+    elif color == "purple":
+        team = 1
 
     i = 0
     for manip in game_board_manipulations:
@@ -66,6 +72,14 @@ def runMove(square):
             game_board[manip[0]][manip[1]] = piece_wanting_to_move.team
         else:
             game_board[manip[0]][manip[1]] = o
+            if team == 2:
+                for i, white_piece in white_p1.items():
+                    if white_piece.grid_info()["row"] == manip[0] and white_piece.grid_info()["column"] == manip[1]:
+                        white_piece.grid_forget()
+            if team == 1:
+                for i, black_piece in black_pieces.items():
+                    if black_piece.grid_info()["row"] == manip[0] and black_piece.grid_info()["column"] == manip[1]:
+                        black_piece.grid_forget()
         i += 1
 
 
@@ -154,6 +168,13 @@ white_piece_location = []
 for key, value in white_p1.items():
     white_piece_location.append([bot_row, bot_column])
     value.grid(row=bot_row, column=bot_column)
+
+    def remember4(piece):
+        global game_board
+        value.config(command=lambda: save_global_piece(valid_moves1(
+            game_board, getLocation(piece))))
+    remember4(value)
+
     if bot_column == 6:
         bot_row += 1
         bot_column = 1
@@ -163,7 +184,7 @@ for key, value in white_p1.items():
     else:
         bot_column += 2
 
-
+white_p1[0].grid(row=3, column=2)
 # From dictionary put those squares onto window
 i = 0
 k = 0
@@ -229,4 +250,6 @@ for piece in white_piece_location:
     simple_board[piece[0]][piece[1]] = '1'
 
 print(simple_board)
+
+
 mainloop()
