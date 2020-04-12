@@ -48,6 +48,8 @@ def valid_moves2(my_board, my_piece):
 
     if first < 8 and second_r == 8:
         move_l.append([first, second_l])
+    elif first < 8 and second_r == 1:
+        move_r.append([first, second_r])
     elif first < 8 and second_r < 8 and second_l >= 0:
         
         if my_board[first][second_l] == o:
