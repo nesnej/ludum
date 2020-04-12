@@ -41,7 +41,7 @@ gbutton = Button(root)
 def runMove(square):
     global game_board
     global gvalid_moves
-    print(game_board)
+    print("GAME BOARD", game_board)
     print("VALID MOVES", gvalid_moves)
 
     row = square.grid_info()["row"]
@@ -100,12 +100,12 @@ def getLocation(button):
     return piece
 
 
-    # creatinig the white pieces
+# creatinig the white pieces
 black_pieces = {}
 my_w_imgs = {}
 for x in range(12):
     my_w_imgs[x] = ImageTk.PhotoImage(Image.open(
-        "nesnej/ludum/output2-onlinepngtools.png"))
+        "output2-onlinepngtools.png"))
 for x in range(12):
     black_pieces[x] = Button(
         root, bg='pink', image=my_w_imgs[x])
@@ -117,7 +117,7 @@ white_p1 = {}
 my_b_imgs = {}
 for x in range(12):
     my_b_imgs[x] = ImageTk.PhotoImage(Image.open(
-        "nesnej/ludum/output-onlinepngtools.png"))
+        "output-onlinepngtools.png"))
 for x in range(12):
     white_p1[x] = Button(root, bg='purple', image=my_b_imgs[x])
 # print(white_p1)
@@ -131,6 +131,7 @@ black_piece_location = []
 for key, value in black_pieces.items():
     black_piece_location.append([row_c, column_c])
     value.grid(row=row_c, column=column_c)
+
     def remember(piece):
         global game_board
         value.config(command=lambda: save_global_piece(valid_moves2(
@@ -170,6 +171,9 @@ for j in range(0, 7, 2):
     for x in range(8):
         redRow[i].grid(row=j, column=x)
 
+        def remember3(square):
+            square.config(command=lambda: runMove(square))
+        remember3(redRow[i])
         i += 1
 
     for x in range(8):

@@ -61,7 +61,7 @@ class Piece:
         row_index = 0
         column_index = 1
 
-        # first entry is where to move the piece, other entry are space to set to 'o'
+        # first entry is where to move the piece, other entries are spaces that should be set to 'o'
         game_board_manipulations = [final_destination, starting_position]
 
         is_valid_move_path = is_move_path_valid(valid_move_paths, move_path)
