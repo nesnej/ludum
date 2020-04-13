@@ -38,12 +38,15 @@ piece_wanting_to_move = Piece(0, False, [0, 0])
 gbutton = Button(root)
 
 
+player_turn = 2
 def runMove(square):
+    global player_turn
     global game_board
     global gvalid_moves
     print("GAME BOARD", game_board)
     print("VALID MOVES", gvalid_moves)
 
+    
     row = square.grid_info()["row"]
     col = square.grid_info()["column"]
 
@@ -56,6 +59,14 @@ def runMove(square):
 
     game_board_manipulations = piece_wanting_to_move.move(
         game_board, gvalid_moves, move_path)
+    
+    if piece_wanting_to_move.team != player_turn:
+        print("Not your turn!")
+        return
+    if player_turn == 2:
+        player_turn = 1
+    else:
+        player_turn = 2
 
     gbutton.grid(
         row=game_board_manipulations[0][0], column=game_board_manipulations[0][1])
