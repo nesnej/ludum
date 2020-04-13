@@ -67,6 +67,8 @@ def runMove(square):
         player_turn = 1
     else:
         player_turn = 2
+    
+    
 
     gbutton.grid(
         row=game_board_manipulations[0][0], column=game_board_manipulations[0][1])

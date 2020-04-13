@@ -62,6 +62,9 @@ def valid_moves2(my_board, my_piece):
 
     jumpd = my_piece.position[0]
     jumpl = my_piece.position[1]
+    first = my_piece.position[0] + 1
+    second_r = my_piece.position[1] + 1
+    second_l = my_piece.position[1] - 1
     while True:
         jd += 2
         jl += -2
@@ -71,6 +74,8 @@ def valid_moves2(my_board, my_piece):
         else:
             break
         if my_board[first][second_l] == 1 and my_board[jumpd][jumpl] == o:
+            first += 2
+            second_l -= 2
             path_l.append([jumpd, jumpl])
         else:
             break
@@ -78,6 +83,9 @@ def valid_moves2(my_board, my_piece):
     j = 0
     jumpd = my_piece.position[0]
     jumpr = my_piece.position[1]
+    first = my_piece.position[0] + 1
+    second_r = my_piece.position[1] + 1
+    second_l = my_piece.position[1] - 1 
     while True:
         j += 2
         if jumpd < 6 and jumpr < 6:
@@ -87,6 +95,9 @@ def valid_moves2(my_board, my_piece):
             break
         if my_board[first][second_r] == 1 and my_board[jumpd][jumpr] == o:
             path_r.append([jumpd, jumpr])
+            first += 2
+            second_r += 2
+            
         else:
             break
     if len(move_l) > 0:
