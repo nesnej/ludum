@@ -15,7 +15,7 @@ game_board = [
     [x, 2, x, 2, x, 2, x, 2],
     [o, x, 1, x, o, x, o, x],
     [x, o, x, o, x, o, x, o],
-    [1, x, 1, x, 1, x, 1, x],
+    [o, x, 1, x, 1, x, 1, x],
     [x, 1, x, 1, x, 1, x, 1],
     [1, x, 1, x, 1, x, 1, x],
 ]
@@ -60,6 +60,24 @@ def runMove(square):
     game_board_manipulations = piece_wanting_to_move.move(
         game_board, gvalid_moves, move_path)
     
+    team_1_lose = True
+    team_2_lose = True
+    for value in game_board:
+        for piece in value:
+            if piece == 1:
+                team_1_lose = False
+            if piece == 2:
+                team_2_lose = False
+    
+    
+    if team_1_lose == True:
+        print("Black Pieces Win!")
+        return
+    if team_2_lose == True:
+        print("White Pieces Win!")
+        return
+    
+    """
     if piece_wanting_to_move.team != player_turn:
         print("Not your turn!")
         return
@@ -67,6 +85,7 @@ def runMove(square):
         player_turn = 1
     else:
         player_turn = 2
+    """
     
     
 

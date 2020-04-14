@@ -124,7 +124,11 @@ def valid_moves1(my_board, my_piece):
     second_r = my_piece.position[1] + 1
     second_l = my_piece.position[1] - 1
 
-    if first >= 0 and second_r < 8 and second_l >= 0:
+    if second_r == 8 and first > 0:
+        move_l.append([first, second_l])
+    elif second_r == 1 and first > 0:
+        move_r.append([first, second_r])
+    elif first > 0 and second_r < 8 and second_l >= 0:
         if my_board[first][second_l] == o:
             move_l.append([first, second_l])
         if my_board[first][second_r] == o:
