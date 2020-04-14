@@ -13,9 +13,9 @@ game_board = [
     [x, 2, x, 2, x, 2, x, 2],
     [2, x, 2, x, 2, x, 2, x],
     [x, 2, x, 2, x, 2, x, 2],
-    [o, x, 1, x, o, x, o, x],
+    [o, x, o, x, o, x, o, x],
     [x, o, x, o, x, o, x, o],
-    [o, x, 1, x, 1, x, 1, x],
+    [1, x, 1, x, 1, x, 1, x],
     [x, 1, x, 1, x, 1, x, 1],
     [1, x, 1, x, 1, x, 1, x],
 ]
@@ -69,7 +69,7 @@ def runMove(square):
             if piece == 2:
                 team_2_lose = False
     
-    
+
     if team_1_lose == True:
         print("Black Pieces Win!")
         return
@@ -77,7 +77,7 @@ def runMove(square):
         print("White Pieces Win!")
         return
     
-    """
+    
     if piece_wanting_to_move.team != player_turn:
         print("Not your turn!")
         return
@@ -85,7 +85,7 @@ def runMove(square):
         player_turn = 1
     else:
         player_turn = 2
-    """
+    
     
     
 
@@ -105,13 +105,17 @@ def runMove(square):
         else:
             game_board[manip[0]][manip[1]] = o
             if team == 2:
-                for i, white_piece in white_p1.items():
+                for m, white_piece in white_p1.items():
                     if white_piece.grid_info()["row"] == manip[0] and white_piece.grid_info()["column"] == manip[1]:
                         white_piece.grid_forget()
+                        del white_p1[m]
+                        break
             if team == 1:
-                for i, black_piece in black_pieces.items():
+                for t, black_piece in black_pieces.items():
                     if black_piece.grid_info()["row"] == manip[0] and black_piece.grid_info()["column"] == manip[1]:
                         black_piece.grid_forget()
+                        del black_pieces[t]
+                        break
         i += 1
 
 
@@ -146,7 +150,7 @@ def getLocation(button):
     return piece
 
 
-# creatinig the white pieces
+# creating the white pieces
 black_pieces = {}
 my_w_imgs = {}
 for x in range(12):
@@ -216,7 +220,7 @@ for key, value in white_p1.items():
     else:
         bot_column += 2
 
-white_p1[0].grid(row=3, column=2)
+#white_p1[0].grid(row=3, column=2)
 # From dictionary put those squares onto window
 i = 0
 k = 0

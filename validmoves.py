@@ -126,8 +126,9 @@ def valid_moves1(my_board, my_piece):
 
     if second_r == 8 and first > 0:
         move_l.append([first, second_l])
-    elif second_r == 1 and first > 0:
-        move_r.append([first, second_r])
+    if second_r == 1 and first > 0:
+        move_l.append([first, second_r])
+    
     elif first > 0 and second_r < 8 and second_l >= 0:
         if my_board[first][second_l] == o:
             move_l.append([first, second_l])
@@ -148,6 +149,8 @@ def valid_moves1(my_board, my_piece):
             break
         if my_board[first][second_l] == 2 and my_board[jumpu][jumpl] == o:
             path_l.append([jumpu, jumpl])
+            first -= 2
+            second_l -= 2
         else:
             break
 
@@ -155,6 +158,8 @@ def valid_moves1(my_board, my_piece):
     jr = 0
     jumpu = my_piece.position[0]
     jumpr = my_piece.position[1]
+    first = my_piece.position[0] - 1
+    second_r = my_piece.position[1] + 1
     while True:
         ju += -2
         jr += 2
@@ -165,6 +170,8 @@ def valid_moves1(my_board, my_piece):
             break
         if my_board[first][second_r] == 2 and my_board[jumpu][jumpr] == o:
             path_r.append([jumpu, jumpr])
+            first -= 2
+            second_r += 2
         else:
             break
 
