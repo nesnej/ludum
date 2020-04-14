@@ -72,7 +72,7 @@ class Piece:
         print("this is a valid move!")
 
         # Remove enemy pieces that were jumped over from the game board
-        if final_destination[row_index] >= starting_position[row_index] + 2:
+        if final_destination[row_index] >= starting_position[row_index] + 2 or final_destination[row_index] <= starting_position[row_index] - 2:
             # This piece jumped at least one piece
             for jump in range(total_move_path_parts):
                 if jump == 0:
@@ -81,7 +81,6 @@ class Piece:
                 else:
                     previous_move = move_path[jump - 1]
                 current_move = move_path[jump]
-                look_back_index = 1
                 piece_to_remove = []
                 # last jump we look back one column and one row
                 if self.team == 2 and self.king == False:
@@ -101,13 +100,13 @@ class Piece:
                     if previous_move[column_index] > current_move[column_index]:
                         # This piece jumped to the left
                         piece_to_remove = [
-                            current_move[0] +
-                            1, current_move[1]+1
+                            current_move[row_index] +
+                            1, current_move[column_index]+1
                         ]
                     elif previous_move[column_index] < current_move[column_index]:
                         # This piece jumped to the right
                         piece_to_remove = [
-                            current_move[row_index] -
+                            current_move[row_index] +
                             1, current_move[column_index] - 1
                         ]
                 # Remove the piece
@@ -159,8 +158,30 @@ def is_move_path_valid(valid_move_paths, move_path):
 #                        sample_good_move_4)
 # except ValueError:
 #     print("This move is not valid yo.")
-sample_piece_4 = Piece(2, False, [2, 5])
+# sample_piece_4 = Piece(2, False, [2, 5])
+# try:
+#     sample_piece_4.move(sample_board_3, piece_4_valid_moves, piece_4_move_to)
+# except ValueError:
+#     print("This move is not valid yo.")
+
+
+sample_board_white = [
+    [x, 2, x, 2, x, 2, x, 2],  # 0
+    [2, x, 2, x, 2, x, o, x],  # 1
+    [x, 2, x, 2, x, 2, x, 2],  # 2
+    [o, x, o, x, o, x, o, x],  # 3
+    [x, o, x, 2, x, o, x, o],  # 4
+    [1, x, 1, x, 1, x, 1, x],  # 5
+    [x, 1, x, o, x, 1, x, 1],  # 6
+    [1, x, 1, x, 1, x, 1, x],  # 7s
+]
+sample_white_piece = Piece(1, False, [5, 2])
+white_piece_valid_moves = [[[4, 1]], [[3, 4], [1, 6]]]
+white_piece_move_to = [[3, 4]]
+
+
 try:
-    sample_piece_4.move(sample_board_3, piece_4_valid_moves, piece_4_move_to)
+    sample_white_piece.move(sample_board_white,
+                            white_piece_valid_moves, white_piece_move_to)
 except ValueError:
     print("This move is not valid yo.")
